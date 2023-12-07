@@ -199,8 +199,8 @@ For what reason would it be advisable for me to think about business content? Th
                     <tr>
                         <td align="center" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 24px; padding: 5px 0 10px 0;">
                             <p style="font-size: 14px; font-weight: 800; line-height: 18px; color: #333333;">
-                                675 Parko Avenue<br>
-                                LA, CA 02232
+                                60 C1<br>
+                                Phường 13, quận Tân Bình, TP HCM
                             </p>
                         </td>
                     </tr>
