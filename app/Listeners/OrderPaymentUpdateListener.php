@@ -23,7 +23,7 @@ class OrderPaymentUpdateListener
     public function handle(OrderPaymentUpdateEvent $event): void
     {
         $orderId = $event->orderId;
-        $order = Order::findOrFail($orderId);
+        $order = Order::find($orderId);
         $order->payment_method = $event->paymentMethod;
         $order->payment_status = $event->paymentInfo['status'];
         $order->payment_approve_date = now();
