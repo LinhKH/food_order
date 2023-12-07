@@ -82,7 +82,7 @@ class PaymentController extends Controller
             'sandbox' => [
                 'client_id'         => config('gatewaySettings.paypal_api_key'),
                 'client_secret'     => config('gatewaySettings.paypal_secret_key'),
-                'app_id'            => 'APP-80W284485P519543T',
+                'app_id'            => date('Ymd').rand(1,10),
             ],
             'live' => [
                 'client_id'         => config('gatewaySettings.paypal_api_key'),
