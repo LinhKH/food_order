@@ -26,7 +26,7 @@ class OrderPlacedNotificationListener
     {
         $orderId = $event->orderId;
 
-        $order = Order::with('user')->find($orderId);
+        $order = Order::with('user')->findOrFail($orderId);
 
         Mail::send(new OrderPlacedMail($order));
     }

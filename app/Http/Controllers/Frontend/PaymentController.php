@@ -158,8 +158,8 @@ class PaymentController extends Controller
             ];
 
             OrderPaymentUpdateEvent::dispatch($orderId, $paymentInfo, 'PayPal');
-            OrderPlacedNotificationEvent::dispatch($orderId);
-            RTOrderPlacedNotificationEvent::dispatch(Order::find($orderId));
+            // OrderPlacedNotificationEvent::dispatch($orderId);
+            // RTOrderPlacedNotificationEvent::dispatch(Order::findOrFail($orderId));
 
             /** Clear session data */
             $orderService->clearSession();
