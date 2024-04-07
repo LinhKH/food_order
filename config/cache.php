@@ -28,6 +28,9 @@ return [
     |
     | Supported drivers: "apc", "array", "database", "file",
     |         "memcached", "redis", "dynamodb", "octane", "null"
+
+    | Supported: "file", "cookie", "database", "apc",
+    |            "memcached", "redis", "dynamodb", "array"
     |
     */
 

@@ -26,9 +26,9 @@ class AppServiceProvider extends ServiceProvider
         $keys = ['pusher_app_id', 'pusher_cluster', 'pusher_key', 'pusher_secret'];
         $pusherConf = Setting::whereIn('key', $keys)->pluck('value', 'key');
 
-        config(['broadcasting.connections.pusher.key' => $pusherConf['pusher_key']]);
-        config(['broadcasting.connections.pusher.secret' => $pusherConf['pusher_secret']]);
-        config(['broadcasting.connections.pusher.app_id' => $pusherConf['pusher_app_id']]);
-        config(['broadcasting.connections.pusher.options.cluster' => $pusherConf['pusher_cluster']]);
+        config(['broadcasting.connections.pusher.key' => $pusherConf['pusher_key'] ?? env('PUSHER_APP_KEY') ]);
+        config(['broadcasting.connections.pusher.secret' => $pusherConf['pusher_secret'] ?? env('PUSHER_APP_SECRET') ]);
+        config(['broadcasting.connections.pusher.app_id' => $pusherConf['pusher_app_id'] ?? env('PUSHER_APP_ID')  ]);
+        config(['broadcasting.connections.pusher.options.cluster' => $pusherConf['pusher_cluster'] ?? env('PUSHER_APP_CLUSTER') ]);
     }
 }

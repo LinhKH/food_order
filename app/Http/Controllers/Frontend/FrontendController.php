@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Events\PostCreatedEvent;
 use App\Http\Controllers\Controller;
 use App\Mail\ContactMail;
 use App\Models\About;
@@ -16,6 +17,7 @@ use App\Models\Contact;
 use App\Models\Counter;
 use App\Models\Coupon;
 use App\Models\DailyOffer;
+use App\Models\Post;
 use App\Models\PrivacyPolicy;
 use App\Models\Product;
 use App\Models\ProductRating;
@@ -26,12 +28,14 @@ use App\Models\Subscriber;
 use App\Models\Testimonial;
 use App\Models\TramsAndCondition;
 use App\Models\WhyChooseUs;
+use Event;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Validation\ValidationException;
 use Mail;
 
@@ -39,36 +43,22 @@ use function Ramsey\Uuid\v1;
 
 class FrontendController extends Controller
 {
-    function index() : View {
-        $sectionTitles = $this->getSectionTitles();
+    function index()  {
+        // Cache::flush();
+        // Cache::put("cacheKey", "This should be a cache key", now()->addDay());
+        // // // Cache::add("cacheKey2","Key number 2", now()->addDay());
+        // Cache::forever("cacheKey2", "Key number 2");
+        // if(Cache::has("cacheKey3")) {
+        //     dd('cache does exist');
+        // }
+        // dd(Cache::get("cacheKey3"));
 
-        $sliders = Slider::where('status', 1)->get();
-        $whyChooseUs = WhyChooseUs::where('status', 1)->get();
-        $categories = Category::where(['show_at_home' => 1, 'status' => 1])->get();
-        $dailyOffers = DailyOffer::with('product')->where('status', 1)->take(15)->get();
-        $bannerSliders = BannerSlider::where('status', 1)->latest()->take(10)->get();
-        $chefs = Chef::where(['show_at_home' => 1, 'status' => 1])->get();
-        $appSection = AppDownloadSection::first();
-        $testimonials = Testimonial::where(['show_at_home' => 1, 'status' => 1])->get();
-        $counter = Counter::first();
-        $latestBlogs = Blog::withCount(['comments' => function($query){
-            $query->where('status', 1);
-        }])->with(['category', 'user'])->where('status', 1)->latest()->take(3)->get();
 
-        return view('frontend.home.index',
-            compact(
-                'sliders',
-                'sectionTitles',
-                'whyChooseUs',
-                'categories',
-                'dailyOffers',
-                'bannerSliders',
-                'chefs',
-                'appSection',
-                'testimonials',
-                'counter',
-                'latestBlogs'
-            ));
+        Event::dispatch(new PostCreatedEvent());
+        $posts = cache('posts', function () {
+            return Post::get();
+        });
+        return view('post.index', compact('posts'));
     }
 
     function getSectionTitles() : Collection {

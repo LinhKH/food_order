@@ -624,21 +624,35 @@ namespace App\Models{
 /**
  * App\Models\PaymentGatewaySetting
  *
- * @property int $id
- * @property string $key
- * @property string|null $value
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|PaymentGatewaySetting newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PaymentGatewaySetting newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PaymentGatewaySetting query()
- * @method static \Illuminate\Database\Eloquent\Builder|PaymentGatewaySetting whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PaymentGatewaySetting whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PaymentGatewaySetting whereKey($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PaymentGatewaySetting whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PaymentGatewaySetting whereValue($value)
  */
 	class PaymentGatewaySetting extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Post
+ *
+ * @property int $id
+ * @property string $title
+ * @property string $description
+ * @property int $user_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\PostFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Post newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Post newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Post query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereUserId($value)
+ */
+	class Post extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -673,7 +687,7 @@ namespace App\Models{
  * @property string $long_description
  * @property float $price
  * @property float $offer_price
- * @property int|null $quantity
+ * @property int $quantity
  * @property string|null $sku
  * @property string|null $seo_title
  * @property string|null $seo_description
@@ -894,7 +908,7 @@ namespace App\Models{
  *
  * @property int $id
  * @property string $key
- * @property string|null $value
+ * @property string $value
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|Setting newModelQuery()
