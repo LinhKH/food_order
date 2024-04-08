@@ -27,7 +27,9 @@ use App\Models\Slider;
 use App\Models\Subscriber;
 use App\Models\Testimonial;
 use App\Models\TramsAndCondition;
+use App\Models\User;
 use App\Models\WhyChooseUs;
+use App\Notifications\WelcomeNotification;
 use Event;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -36,10 +38,9 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Validation\ValidationException;
 use Mail;
-
-use function Ramsey\Uuid\v1;
 
 class FrontendController extends Controller
 {
@@ -54,11 +55,33 @@ class FrontendController extends Controller
         // dd(Cache::get("cacheKey3"));
 
 
-        Event::dispatch(new PostCreatedEvent());
-        $posts = cache('posts', function () {
-            return Post::get();
-        });
-        return view('post.index', compact('posts'));
+        // Event::dispatch(new PostCreatedEvent());
+        // $posts = cache('posts', function () {
+        //     return Post::get();
+        // });
+        // return view('post.index', compact('posts'));
+
+        // $user = User::first();
+        // $post = [
+        //     'title' => 'post title',
+        //     'slug' => 'post-title',
+        // ];
+        // Notification::send($user, new WelcomeNotification($post));
+
+        $users = User::get();
+        $post = [
+            'title' => 'post title',
+            'slug' => 'post-title',
+        ];
+        foreach ($users as $user) {
+            // // case 1
+            // Notification::send($user, new WelcomeNotification($post));
+
+            // case 2
+            $user->notify(new WelcomeNotification($post));
+        }
+
+        dd("done");
     }
 
     function getSectionTitles() : Collection {
