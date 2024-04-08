@@ -14,6 +14,12 @@
                         <li><a href="{{ url('/') }}">home</a></li>
                         <li><a href="javascript:;">dashboard</a></li>
                     </ul>
+                    @foreach (auth()->user()->unreadnotifications as $notification )
+                        <div class="bg-blue-300 p-3 m-2">
+                            <b>{{ $notification->data['name'] }}</b> started following you !!!
+                            <a href="{{ route('markasread', $notification->id) }}" class="p-2 bg-red-400 text-white rounded-lg">Mark as read</a>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>

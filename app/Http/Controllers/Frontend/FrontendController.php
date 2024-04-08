@@ -29,6 +29,7 @@ use App\Models\Testimonial;
 use App\Models\TramsAndCondition;
 use App\Models\User;
 use App\Models\WhyChooseUs;
+use App\Notifications\UserFollowNotification;
 use App\Notifications\WelcomeNotification;
 use Event;
 use Illuminate\Contracts\View\View;
@@ -82,6 +83,21 @@ class FrontendController extends Controller
         }
 
         dd("done");
+    }
+
+    public function notify()
+    {
+        if (auth()->user()) {
+            $user= User::find(4); // id: 1, name: Admin, email: admin@gmail.com
+            auth()->user()->notify(new UserFollowNotification($user));
+        }
+    }
+
+    public function markasread($id) {
+        if ($id) {
+            auth()->user()->unreadNotifications->where("id", $id)->markasread();
+        }
+        return back();
     }
 
     function getSectionTitles() : Collection {

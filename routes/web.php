@@ -54,6 +54,8 @@ require __DIR__.'/auth.php';
 
 /** Show Home page */
 Route::get('/', [FrontendController::class, 'index'])->name('home');
+Route::get('/notify', [FrontendController::class, 'notify'])->name('notify');
+Route::get('/markasread/{id}', [FrontendController::class, 'markasread'])->name('markasread');
 
 /** Chef page */
 Route::get('/chef', [FrontendController::class, 'chef'])->name('chef');
