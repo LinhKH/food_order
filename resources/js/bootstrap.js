@@ -33,7 +33,7 @@ window.Echo = new Echo({
     enabledTransports: ["ws", "wss"],
 });
 
-window.Echo.channel("order-placed").listen(
+window.Echo.private("order-placed").listen(
     "RTOrderPlacedNotificationEvent",
     (e) => {
         console.log(e);

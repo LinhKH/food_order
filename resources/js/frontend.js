@@ -3,7 +3,7 @@ function scrollToBootom(){
     chatContent.scrollTop(chatContent.prop("scrollHeight"));
 }
 
-window.Echo.private("chat."+loggedInUserId).listen(
+window.Echo.private("chat."+ loggedInUserId).listen(
     "ChatEvent",
     (e) => {
         console.log(e);
@@ -11,6 +11,7 @@ window.Echo.private("chat."+loggedInUserId).listen(
         class="img-fluid w-100" style="border-radius: 50%;">
         </div><div class="fp__chating_text">
             <p>${e.message}</p>
+            <p>${e.date_time}</p>
         </div>
         </div>`
 

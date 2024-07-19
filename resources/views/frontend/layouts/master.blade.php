@@ -35,9 +35,9 @@
     </style>
 
     <script>
-        var pusherKey = "{{ config('settings.pusher_key') }}";
-        var pusherCluster = "{{ config('settings.pusher_cluster') }}";
-        var loggedInUserId = "{{ auth()->user()->id ?? '' }}";
+        var pusherKey = "{{ $pusherConf['pusher_key'] }}";
+        var pusherCluster = "{{ $pusherConf['pusher_cluster'] }}";
+        var loggedInUserId = "{{ auth()->user()->id }}";
     </script>
 
     @vite(['resources/js/app.js', 'resources/js/frontend.js'])

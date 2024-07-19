@@ -38,7 +38,7 @@ class RTOrderPlacedNotificationEvent implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new Channel('order-placed'),
+            new PrivateChannel('order-placed'),
         ];
     }
 }

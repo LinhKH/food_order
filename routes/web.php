@@ -48,6 +48,11 @@ Route::group(['middleware' => 'auth'], function(){
     /** Chat Routes */
     Route::post('chat/send-message', [ChatController::class, 'sendMessage'])->name('chat.send-message');
     Route::get('chat/get-conversation/{senderId}',[ChatController::class, 'getConversation'])->name('chat.get-conversation');
+
+    Route::get('test', function () {
+        $order = Order::find(10);
+        broadcast(new RTOrderPlacedNotificationEvent($order));
+    });
 });
 
 require __DIR__.'/auth.php';

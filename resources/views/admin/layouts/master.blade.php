@@ -26,8 +26,8 @@
     <!-- Start GA -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
     <script>
-        var pusherKey = "{{ config('settings.pusher_key') }}";
-        var pusherCluster = "{{ config('settings.pusher_cluster') }}";
+        var pusherKey = "{{ $pusherConf['pusher_key'] }}";
+        var pusherCluster = "{{ $pusherConf['pusher_cluster'] }}";
         var loggedInUserId = "{{ auth()->user()->id }}";
     </script>
     <!-- /END GA -->
