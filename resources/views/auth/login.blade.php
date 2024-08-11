@@ -40,14 +40,14 @@
                                     <div class="col-xl-12">
                                         <div class="fp__login_imput">
                                             <label>email</label>
-                                            <input type="email" name="email" placeholder="Email" required value="{{ old('email') }}">
+                                            <input type="email" name="email" placeholder="Email" required value="{{ old('email') ?? 'user@gmail.com' }}">
                                         </div>
                                     </div>
 
                                     <div class="col-xl-12">
                                         <div class="fp__login_imput">
                                             <label>password</label>
-                                            <input type="password" placeholder="Password" name="password">
+                                            <input type="password" placeholder="Password" name="password" value="password">
                                         </div>
                                     </div>
 

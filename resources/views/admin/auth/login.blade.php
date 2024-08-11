@@ -55,7 +55,7 @@
                                     <div class="form-group">
                                         <label for="email">Email</label>
                                         <input id="email" type="email" class="form-control" name="email"
-                                            tabindex="1" required autofocus value="{{ old('email') }}">
+                                            tabindex="1" required autofocus value="{{ old('email') ?? 'admin@gmail.com' }}">
                                         <div class="invalid-feedback">
                                             Please fill in your email
                                         </div>
@@ -70,7 +70,7 @@
                                                 </a>
                                             </div>
                                         </div>
-                                        <input id="password" type="password" class="form-control" name="password"
+                                        <input id="password" type="password" class="form-control" name="password" value="password"
                                             tabindex="2" required>
                                         <div class="invalid-feedback">
                                             please fill in your password

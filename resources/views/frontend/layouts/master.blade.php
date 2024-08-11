@@ -37,7 +37,7 @@
     <script>
         var pusherKey = "{{ $pusherConf['pusher_key'] }}";
         var pusherCluster = "{{ $pusherConf['pusher_cluster'] }}";
-        var loggedInUserId = "{{ auth()->user()->id }}";
+        var loggedInUserId = "{{ auth()->user()->id ?? '' }}";
     </script>
 
     @vite(['resources/js/app.js', 'resources/js/frontend.js'])
@@ -46,7 +46,7 @@
 
 <body>
     <div class="overlay-container d-none">
-        <div class="overlay">
+        <div class="overlay active">
             <span class="loader"></span>
         </div>
     </div>
